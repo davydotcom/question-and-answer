@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question_id: 1
+  content: MyText
+  up_votes: 1
+  down_votes: 1
+  user_id: 1
+  answered: false
+
+two:
+  question_id: 1
+  content: MyText
+  up_votes: 1
+  down_votes: 1
+  user_id: 1
+  answered: false

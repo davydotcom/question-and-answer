@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question & Answer</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Question &amp; Answer</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="/">Questions</a></li>
+              <li><a href="/questions/unanswered">Unanswered</a></li>
+
+            </ul>
+            <ul class="nav pull-right">
+              <li><%=link_to "Ask a Question", new_question_url%></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <%=yield%>
+    </div> <!-- /container -->
+
+</body>
+</html>

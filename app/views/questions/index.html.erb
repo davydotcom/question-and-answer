@@ -1,0 +1,19 @@
+<div class="questions">
+<%@questions.each do |question|%>
+	<div class="question row-fluid">
+		<div class="votes span1">
+			<span class="vote_count"><%=question.total_votes%></span>
+			<span class="label">Total Votes</span>
+		</div>
+		<div class="question_content span11">
+			<h3><%=link_to question.subject, question_path(question)%></h3>
+			<%=question.formatted_content.html_safe%>
+			<div class="question_meta">
+				<span class="posted_by">Asked By: <%=question.spud_user.full_name%></span>
+				<span class="posted_at"><%=timestamp question.created_at%></span>
+			</div>
+		</div>
+	</div>
+<%end%>
+</div>
+<%=will_paginate @questions%>
