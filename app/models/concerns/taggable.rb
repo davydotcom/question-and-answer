@@ -11,14 +11,18 @@ module Taggable
   end
 
   def tag_string=(data)
+    self.taggings.each do |tagging|
+      tagging.destroy
+    end
   	tagArray = data.split(",")
   	tagArray.each do |tag|
-  		tagRecord = Tag.where(:name => tag.truncate).first
+  		tagRecord = Tag.where(:name => tag.strip).first
   		if !tagRecord
-  			tagRecord = Tag.new(:name => tag.truncate)
+  			tagRecord = Tag.new(:name => tag.strip)
+        tagRecord.save
+
   		end
-  		tagRecord.save
-  		self.tags << tagRecord
+      self.tags << tagRecord
   	end
   end
 

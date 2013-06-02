@@ -4,11 +4,20 @@
 		<%=link_to "Up Vote", vote_answer_url(:id => answer.id,:value => 1), :class => "up-vote-btn"%>
 		<span class="vote_count"><%=answer.total_votes%></span>
 		<%=link_to "Down Vote", vote_answer_url(:id => answer.id,:value => -1), :class => "down-vote-btn"%>
+		<%if !answer.answered%>
+			<%=link_to correct_answer_url(:id => answer.id), :class => "btn correct-answer-btn" do%>
+				<i class="icon-ok "></i>
+			<%end%>
+		<%else%>
+			<%=link_to correct_answer_url(:id => answer.id), :class => "btn btn-success correct-answer-btn" do%>
+				<i class="icon-ok icon-white"></i>
+			<%end%>
+		<%end%>
 	</div>
 	<div class="answer_content span11">
 		<%=answer.formatted_content.html_safe%>
 		<div class="answer_meta">
-			<span class="posted_by">Asked By: <%=answer.spud_user.try(:full_name)%></span>
+			<span class="posted_by">Answered By: <%=answer.spud_user.try(:full_name)%></span>
 			<span class="posted_at"><%=timestamp answer.created_at%></span>
 		</div>
 	</div>

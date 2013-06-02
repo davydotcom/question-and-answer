@@ -9,6 +9,8 @@ class Question < ActiveRecord::Base
 	validates :subject, :presence => true
 	validates :content, :presence => true
 
+	scope :unanswered, joins("LEFT JOIN answers on answers.question_id = questions.id").group("questions.id").having("count(answers.id) = 0")
+
 	def formatted_content
 		if self.content.blank?
 			return ''

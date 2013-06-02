@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
 		order = params[:order] || "updated_at DESC"
 		page  = params[:page] || 1
 
-		@questions = Question.order(order).paginate :page => page
+		@questions = Question.order(order).includes(:answers).paginate :page => page
 		respond_with @questions
 	end
 
@@ -14,7 +14,23 @@ class QuestionsController < ApplicationController
 		order = params[:order] || "updated_at DESC"
 		page  = params[:page] || 1
 
-		@questions = Question.order(order).paginate :page => page
+		@questions = Question.unanswered.includes(:answers).order(order).paginate :page => page
+		render :action => "index"
+	end
+
+	def mine
+		order = params[:order] || "updated_at DESC"
+		page  = params[:page] || 1
+
+		@questions = Question.where(:user_id => @current_user.id).order(order).includes(answers).paginate :page => page
+		render :action => "index"
+	end
+
+	def tags
+		order = params[:order] || "updated_at DESC"
+		page  = params[:page] || 1
+
+		# @questions = Question.tags(params[:id]).order(order).includes(answers).paginate :page => page
 		render :action => "index"
 	end
 

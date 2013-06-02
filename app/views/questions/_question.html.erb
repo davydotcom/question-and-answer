@@ -3,6 +3,17 @@
 		<%=link_to "Up Vote", vote_question_url(:id => question.id,:value => 1), :class => "up-vote-btn"%>
 		<span class="vote_count"><%=question.total_votes%></span>
 		<%=link_to "Down Vote", vote_question_url(:id => question.id,:value => -1), :class => "down-vote-btn"%>
+		<%if editable && @current_user.id == question.user_id%>
+		<div class="btn-group edit-buttons">
+			<%=link_to edit_question_url(question), :class => "btn btn-mini" do%>
+				<i class="icon-pencil"></i>
+			<%end%>
+			<%=link_to question_url(question), :method => :delete, :confirm => "Are you sure you wish to remove this question?", :class => "btn btn-danger btn-mini" do%>
+				<i class="icon-trash icon-white"></i>
+			<%end%>
+
+		</div>
+		<%end%>
 	</div>
 	<div class="question_content span11">
 		<h3><%=link_to question.subject, question_path(question)%></h3>
@@ -10,6 +21,14 @@
 		<div class="question_meta">
 			<span class="posted_by">Asked By: <%=question.spud_user.full_name%></span>
 			<span class="posted_at"><%=timestamp question.created_at%></span>
+		</div>
+		<div class="question-tags">
+			<%if question.tag_names.count > 0%>
+			<strong>Tags: </strong>&nbsp;
+				<%question.tag_names.each do |tag| %>
+					<span class="label label-info"><%=tag%></span>
+				<%end%>
+			<%end%>
 		</div>
 	</div>
 </div>

@@ -8,6 +8,7 @@ QuestionAndAnswer::Application.routes.draw do
     end
     collection do
       get 'unanswered'
+      get 'mine'
     end
   	resources :comments, :only => [:create, :update, :destroy, :index]
   	resources :answers
@@ -16,6 +17,7 @@ QuestionAndAnswer::Application.routes.draw do
   resources :answers do
   	member do
   		get 'vote'
+      get 'correct'
   	end
   	resources :comments, :only => [:create, :update, :destroy, :index]
   end

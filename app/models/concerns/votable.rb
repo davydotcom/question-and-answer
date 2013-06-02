@@ -14,7 +14,7 @@ module Votable
       self.save()
     elsif self.votes.create(:user_id => user.id, :vote => value)
 
-      if(value == 1)
+      if(value.to_i > 0)
         up_votes = self.up_votes || 0
         self.up_votes = up_votes + 1
       else

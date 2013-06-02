@@ -1,4 +1,4 @@
 <div class="questions">
-	<%=render :partial => "question", :collection => @questions%>
+	<%=render :partial => "question", :collection => @questions, :locals => {:editable => false}%>
 </div>
 <%=will_paginate @questions%>

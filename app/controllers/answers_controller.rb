@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
 	respond_to :json, :html
-	before_filter :load_question, :except => :vote
+	before_filter :load_question, :except => [:vote,:correct]
 
 	def create
 		@answer = @question.answers.new(answer_params)
@@ -27,6 +27,21 @@ class AnswersController < ApplicationController
 		@answer = Answer.find(params[:id])
 		response = @answer.vote(@current_user, params[:value])
 		redirect_to :back and return
+	end
+
+	def correct
+		@answer = Answer.find(params[:id])
+		@question = @answer.question
+
+		if @question.user_id != @current_user.id
+			flash[:error] = "You must be the owner of the question to mark it."
+		else
+			@previously_marked_answer = @question.answers.where(:answered => true).first
+			@previously_marked_answer.update_attributes(:answered => false) if @previously_marked_answer
+			@answer.answered = true
+			@answer.save
+		end
+		redirect_to :back
 	end
 
 private

@@ -1,14 +1,12 @@
 <h2>Question</h2>
-<%=render @question%>
+<%=render :partial => "question", :locals => {:editable => true, :question => @question}%>
 
 <hr/>
-<h2>Answers</h2>
-
 <%if @answers.blank? == false %>
+	<h2>Answers</h2>
 	<%=render :partial => "/answers/answer", :collection => @answers%>
+	<hr/>
 <%end%>
-
-<hr/>
 <h2>Your answer</h2>
 <%=form_for @answer, :url => question_answer_path(@question,@answer), :html => {:class => "form-horizontal well"} do |f|%>
 	<div class="control-group">
