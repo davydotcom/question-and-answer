@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap/js/bootstrap.js
+//= require highlight/highlight.pack.js
 //= require_tree .
+
+$(document).ready(function() {
+	hljs.initHighlightingOnLoad();
+});

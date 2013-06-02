@@ -10,8 +10,18 @@ class QuestionsController < ApplicationController
 		respond_with @questions
 	end
 
+	def unanswered
+		order = params[:order] || "updated_at DESC"
+		page  = params[:page] || 1
+
+		@questions = Question.order(order).paginate :page => page
+		render :action => "index"
+	end
+
 	def show
 		@question = Question.find(params[:id])
+		@answers = @question.answers.order(:created_at).all
+		@answer = @question.answers.new
 		respond_with @question
 	end
 
@@ -39,7 +49,22 @@ class QuestionsController < ApplicationController
 	end
 
 	def destroy
+		@question = Question.find(params[:id])
+		if @question.spud_user != @current_user
+			flash[:error] = "You do not have permission to remove this question!"
+			redirect_to request.referer || questions_url
+			return
+		end
 
+		@question.destroy
+
+		respond_with @question
+	end
+
+	def vote
+		@question = Question.find(params[:id])
+		response = @question.vote(@current_user, params[:value])
+		redirect_to :back
 	end
 
 private

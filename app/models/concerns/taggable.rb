@@ -4,7 +4,6 @@ module Taggable
   included do
     has_many :taggings, as: :attachment, dependent: :destroy
     has_many :tags, through: :taggings
-    attr_accessor :tag_string
   end
 
   def tag_names

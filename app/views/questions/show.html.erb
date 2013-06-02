@@ -1,18 +1,26 @@
 <h2>Question</h2>
-<div class="question row-fluid">
-	<div class="votes span1">
-		<span class="vote_count"><%=@question.total_votes%></span>
-		<span class="label">Total Votes</span>
-	</div>
-	<div class="@question.content span11">
-		<h3><%=@question.subject%></h3>
-		<%=@question.formatted_content.html_safe%>
-		<div class="@question.meta">
-			<span class="posted_by">Asked By: <%=@question.spud_user.full_name%></span>
-			<span class="posted_at"><%=timestamp @question.created_at%></span>
-		</div>
-	</div>
-</div>
+<%=render @question%>
 
 <hr/>
 <h2>Answers</h2>
+
+<%if @answers.blank? == false %>
+	<%=render :partial => "/answers/answer", :collection => @answers%>
+<%end%>
+
+<hr/>
+<h2>Your answer</h2>
+<%=form_for @answer, :url => question_answer_path(@question,@answer), :html => {:class => "form-horizontal well"} do |f|%>
+	<div class="control-group">
+		<%=f.label :content, "Answer", :class => "control-label"%>
+		<div class="controls">
+			<%=f.text_area :content, :class=>"question-field"%>
+		    <span class="help-block">Markdown format Supported.</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<%=f.submit "Post your Answer", :class => "btn btn-primary"%>
+		</div>
+	</div>
+<%end%>

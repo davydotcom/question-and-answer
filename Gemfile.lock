@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/spud-rails/spud_core_admin.git
-  revision: 949584ff469c5007b76f2a47cf5d50acbe5803f5
+  revision: 42b87f18023600af9f878922a4a350faa275637e
   branch: rails4
   specs:
     spud_core (1.0.0.rc1)
@@ -74,7 +74,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     minitest (4.7.4)
-    multi_json (1.7.4)
+    multi_json (1.7.5)
     mysql2 (0.3.11)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -97,7 +97,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
-    redcarpet (2.2.2)
+    redcarpet (2.3.0)
     retina_tag (1.1.9)
       jquery-rails
       rails (>= 3.1)

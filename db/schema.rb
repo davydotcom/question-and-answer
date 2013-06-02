@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130530160658) do
+ActiveRecord::Schema.define(version: 20130602173028) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 20130530160658) do
     t.string   "attachment_type"
     t.integer  "attachment_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.string   "attachment_type"
+    t.integer  "attachment_id"
+    t.integer  "vote"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

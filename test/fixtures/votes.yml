@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  attachment_type: Question
+  attachment_id: 2
+  vote: 1
+
+two:
+  user_id: 2
+  attachment_type: Question
+  attachment_id: 2
+  vote: 1
+
+three:
+  user_id: 3
+  attachment_type: Question
+  attachment_id: 2
+  vote: 1
+
+four:
+  user_id: 4
+  attachment_type: Question
+  attachment_id: 2
+  vote: 1
