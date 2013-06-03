@@ -3,10 +3,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
-gem 'mysql2'
+gem 'mysql2','0.3.12b4'
 gem 'spud_core', :git => "https://github.com/spud-rails/spud_core_admin.git", :branch => "rails4"
 gem 'redcarpet'
 gem 'truncate_html'
+gem 'thinking-sphinx'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

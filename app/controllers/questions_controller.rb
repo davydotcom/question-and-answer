@@ -10,6 +10,11 @@ class QuestionsController < ApplicationController
 		respond_with @questions
 	end
 
+	def search
+		@results = Question.search params[:phrase]
+		respond_with @results
+	end
+
 	def unanswered
 		order = params[:order] || "updated_at DESC"
 		page  = params[:page] || 1

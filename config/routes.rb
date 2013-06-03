@@ -8,6 +8,7 @@ QuestionAndAnswer::Application.routes.draw do
     end
     collection do
       get 'unanswered'
+      get 'search'
       get 'mine'
     end
   	resources :comments, :only => [:create, :update, :destroy, :index]

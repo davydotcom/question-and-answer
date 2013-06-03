@@ -18,11 +18,14 @@
           </button>
           <a class="brand" href="/">Question &amp; Answer</a>
           <div class="nav-collapse collapse">
+            <form class="navbar-search pull-left" action="/questions/search" method="GET">
+              <input type="text" name="phrase" class="search-query" placeholder="Search" value="<%=params[:phrase]%>">
+            </form>
             <ul class="nav">
+
               <li><a href="/">Questions</a></li>
               <li><a href="/questions/unanswered">Unanswered</a></li>
               <li><a href="/questions/unanswered">My Questions</a></li>
-
             </ul>
             <ul class="nav pull-right">
               <li><%=link_to new_question_url do%>

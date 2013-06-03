@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
 	include Taggable
 	include Votable
+	include ThinkingSphinx::Scopes
 
 	belongs_to :spud_user, :foreign_key => :user_id
 	has_many :answers

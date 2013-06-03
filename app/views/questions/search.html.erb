@@ -1,0 +1,30 @@
+<div class="questions">
+	<%@results.each do |question|%>
+		<div class="question row-fluid">
+			<div class="votes span1">
+				<%=link_to "Up Vote", vote_question_url(:id => question.id,:value => 1), :class => "up-vote-btn"%>
+				<span class="vote_count"><%=question.total_votes%></span>
+				<%=link_to "Down Vote", vote_question_url(:id => question.id,:value => -1), :class => "down-vote-btn"%>
+
+			</div>
+			<div class="question_content span11">
+				<h3><%=link_to question.subject, question_path(question)%></h3>
+				<%=question.formatted_content.html_safe%>
+				<div class="question_meta">
+					<span class="posted_by">Asked By: <%=question.spud_user.full_name%></span>
+					<span class="posted_at"><%=timestamp question.created_at%></span>
+				</div>
+				<div class="question-tags">
+					<%if question.tag_names.count > 0%>
+					<strong>Tags: </strong>&nbsp;
+						<%question.tag_names.each do |tag| %>
+							<span class="label label-info"><%=tag%></span>
+						<%end%>
+					<%end%>
+				</div>
+			</div>
+		</div>
+
+	<%end%>
+</div>
+<%=will_paginate @results%>
