@@ -24,4 +24,8 @@ QuestionAndAnswer::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+
+  Tire.configure do
+    url "http://localhost:9200"
+  end
 end

@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
 		order = params[:order] || "updated_at DESC"
 		page  = params[:page] || 1
 
-		@questions = Question.where(:user_id => @current_user.id).order(order).includes(answers).paginate :page => page
+		@questions = Question.where(:user_id => @current_user.id).order(order).includes(:answers).paginate :page => page
 		render :action => "index"
 	end
 

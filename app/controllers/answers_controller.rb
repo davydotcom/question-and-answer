@@ -5,7 +5,9 @@ class AnswersController < ApplicationController
 	def create
 		@answer = @question.answers.new(answer_params)
 		@answer.spud_user = @current_user
-		@answer.save
+		if @answer.save
+        NotificationMailer.question_answered_notification(@question,@answer).deliver
+		end
 		respond_with @answer, :location => question_url(:id => @question.id)
 	end
 
@@ -39,7 +41,9 @@ class AnswersController < ApplicationController
 			@previously_marked_answer = @question.answers.where(:answered => true).first
 			@previously_marked_answer.update_attributes(:answered => false) if @previously_marked_answer
 			@answer.answered = true
-			@answer.save
+			if @answer.save
+        NotificationMailer.answer_correct(@answer).deliver
+			end
 		end
 		redirect_to :back
 	end

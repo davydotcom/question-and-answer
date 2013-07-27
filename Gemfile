@@ -7,7 +7,9 @@ gem 'mysql2','0.3.12b4'
 gem 'spud_core', :git => "https://github.com/spud-rails/spud_core_admin.git", :branch => "rails4"
 gem 'redcarpet'
 gem 'truncate_html'
-gem 'thinking-sphinx'
+# gem 'thinking-sphinx'
+gem 'tire'
+gem 'postmark-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

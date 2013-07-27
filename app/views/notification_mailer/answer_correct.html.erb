@@ -1,0 +1,8 @@
+<p>Your answer has been marked as the correct answer for question [<%=@question.subject%>].</p>
+<hr/>
+<div>
+	<%=@answer.formatted_content.html_safe%>
+</div>
+<hr/>
+
+<p><%=link_to "View this answer.", @url%></p>

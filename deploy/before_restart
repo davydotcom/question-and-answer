@@ -1,4 +1,4 @@
-#!/usr/bin/env git_ruby
+#!/usr/bin/env ruby
 
 oldrev, newrev = ARGV
 
